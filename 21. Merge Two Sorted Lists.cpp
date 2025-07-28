@@ -11,8 +11,8 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode *head;
-        ListNode **indirect = &head;
+        ListNode *node;
+        ListNode **indirect = &node;
         while(list1 && list2){
             if(list1->val <= list2->val){
                 *indirect = list1;
@@ -21,12 +21,11 @@ public:
                 *indirect = list2;
                 list2 = list2->next;
             }
-
-            indirect = &(*indirect)->next;
+            indirect = &((*indirect)->next);
         }
         if(list1)   *indirect = list1;
-        else    *indirect = list2;
-        
-        return head;
+        if(list2)   *indirect = list2;
+
+        return node;
     }
 };
